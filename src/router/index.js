@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
+import Home from '../views/Home.vue'
+import Consulta from '../views/Consulta.vue'
 
 Vue.use(VueRouter)
 
@@ -13,22 +15,12 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "home" */ '../views/Home.vue')
-    }
+    component: Home
   },
   {
     path: '/consulta',
     name: 'Consulta',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "consulta" */ '../views/Consulta.vue')
-    }
+    component: Consulta
   }
 ]
 
