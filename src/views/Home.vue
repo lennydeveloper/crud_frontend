@@ -58,6 +58,13 @@
         <b-icon-envelope></b-icon-envelope>
         <p class="m-0 p-0 ml-2">NOTIFICAR</p>
       </button>
+      <button
+        class="btn border d-flex align-items-center"
+        v-on:click="consultarUsuario()"
+      >
+        <b-icon-envelope></b-icon-envelope>
+        <p class="m-0 p-0 ml-2">CONSULTAR</p>
+      </button>
     </div>
 
     <b-table
@@ -121,137 +128,143 @@
 </template>
 
 <script>
-import axios from "axios";
-import Bus from "@/helper/bus.js";
-import agregarEstudiante from "../components/modales/AgregarEstudiante.vue";
-import editarEstudiante from "../components/modales/EditarEstudiante.vue";
-import verEstudiante from "../components/modales/VerEstudiante.vue";
-import borrarEstudiante from "../components/modales/BorrarEstudiante.vue";
+import axios from 'axios'
+import Bus from '@/helper/bus.js'
+import agregarEstudiante from '../components/modales/AgregarEstudiante.vue'
+import editarEstudiante from '../components/modales/EditarEstudiante.vue'
+import verEstudiante from '../components/modales/VerEstudiante.vue'
+import borrarEstudiante from '../components/modales/BorrarEstudiante.vue'
 
 export default {
-  name: "Home",
-  data() {
+  name: 'Home',
+  data () {
     return {
       perPage: 10,
       currentPage: 1,
-      search: "",
+      search: '',
       titulos: [
-        { key: "id", label: "ID" },
-        { key: "nombre_estudiante", label: "NOMBRE" },
-        { key: "documento_estudiante", label: "CÉDULA" },
-        { key: "telefono_estudiante", label: "TELÉFONO" },
-        { key: "correo_estudiante", label: "CORREO" },
-        { key: "nombre_curso", label: "CURSO" },
-        { key: "fecha_realizacion", label: "F. REALIZACIÓN" },
-        { key: "fecha_vencimiento", label: "F. VENCIMIENTO" },
-        { key: "estado", label: "ESTADO" },
-        { key: "opciones", label: "OPCIONES" },
+        { key: 'id', label: 'ID' },
+        { key: 'nombre_estudiante', label: 'NOMBRE' },
+        { key: 'documento_estudiante', label: 'CÉDULA' },
+        { key: 'telefono_estudiante', label: 'TELÉFONO' },
+        { key: 'correo_estudiante', label: 'CORREO' },
+        { key: 'nombre_curso', label: 'CURSO' },
+        { key: 'fecha_realizacion', label: 'F. REALIZACIÓN' },
+        { key: 'fecha_vencimiento', label: 'F. VENCIMIENTO' },
+        { key: 'estado', label: 'ESTADO' },
+        { key: 'opciones', label: 'OPCIONES' }
       ],
-      filas: [],
-    };
+      filas: []
+    }
   },
 
   components: {
     agregarEstudiante,
     editarEstudiante,
     verEstudiante,
-    borrarEstudiante,
+    borrarEstudiante
   },
 
   methods: {
     cerrarSesion: function () {
       this.$router.push({
-        name: "Login",
-      });
+        name: 'Home'
+      })
     },
 
     notificarUsuarios: function () {
-      this.$store.dispatch("fetchNotificarUsuarios", { can_dias: process.env.VUE_APP_TIEMPO_NOTIFICACION}).then((result) => {
+      this.$store.dispatch('fetchNotificarUsuarios', { can_dias: process.env.VUE_APP_TIEMPO_NOTIFICACION }).then((result) => {
         if (result.CODIGO === 1) {
-          alert("Los usuarios han sido notificados exitosamente");
+          alert('Los usuarios han sido notificados exitosamente')
         } else {
-          alert("Error al notificar a los usuarios");
+          alert('Error al notificar a los usuarios')
         }
-      });
+      })
     },
 
-    cargarArchivo(event) {
+    consultarUsuario: function () {
+      this.$router.push({
+        name: 'Consulta'
+      })
+    },
+
+    cargarArchivo (event) {
       const localAxios = axios.create({
         headers: {
-          "Content-Type": "multipart/form-data",
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
+          'Content-Type': 'multipart/form-data',
+          'Access-Control-Allow-Origin': '*'
+        }
+      })
 
-      localAxios.defaults.baseURL = "http://localhost:5000/estudiantes";
-      let formData = new FormData();
-      formData.append("archivo", event.target.files[0]);
-      localAxios.post("importar_excel", formData).then((result) => {
+      localAxios.defaults.baseURL = 'http://localhost:5000/estudiantes'
+      const formData = new FormData()
+      formData.append('archivo', event.target.files[0])
+      localAxios.post('importar_excel', formData).then((result) => {
         if (result.status === 200) {
           alert(
-            "La información de los estudiantes ha sido guardada exitosamente"
-          );
-          this.$router.go(0);
+            'La información de los estudiantes ha sido guardada exitosamente'
+          )
+          this.$router.go(0)
         } else {
-          alert("Error al cargar la información de los estudiantes");
+          alert('Error al cargar la información de los estudiantes')
         }
-      });
+      })
     },
 
     exportarDatos: function () {
-      this.$store.dispatch("fetchExportarDatos").then((result) => {
-        var link = document.createElement("a");
-        link.download = result;
-        link.href = `${process.env.VUE_APP_WEBSERVICE_URL}/descargar_archivo/${result}`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
+      this.$store.dispatch('fetchExportarDatos').then((result) => {
+        var link = document.createElement('a')
+        link.download = result
+        link.href = `${process.env.VUE_APP_WEBSERVICE_URL}/descargar_archivo/${result}`
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      })
     },
 
     doubleClick: function (event) {
-      Bus.$emit("editar_estudiante", event.id);
+      Bus.$emit('editar_estudiante', event.id)
     },
 
-    formatoMiles(n) {
+    formatoMiles (n) {
       // Example -> format number 1000000 to 1,234,567
-      return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
 
     verInfoEstudiante: function (id) {
-      Bus.$emit("verEstudiante", id);
+      Bus.$emit('verEstudiante', id)
     },
 
     eliminarEstudiante: function (id) {
-      Bus.$emit("eliminarEstudiante", id);
-    },
+      Bus.$emit('eliminarEstudiante', id)
+    }
   },
 
-  created() {
-    this.$store.dispatch("fetchObtenerEstudiantes").then((result) => {
+  created () {
+    this.$store.dispatch('fetchObtenerEstudiantes').then((result) => {
       if (result.CODIGO == 1) {
-        this.filas = result.DATOS;
+        this.filas = result.DATOS
       }
-    });
+    })
   },
 
   computed: {
-    rows() {
-      return this.filas.length;
+    rows () {
+      return this.filas.length
     },
 
     filasFiltradas: function () {
-      if (this.search !== "") {
+      if (this.search !== '') {
         return this.filas.filter((element) => {
           return element.nombre_estudiante
             .toLowerCase()
-            .includes(this.search.toLowerCase());
-        });
+            .includes(this.search.toLowerCase())
+        })
       }
-      return this.filas;
-    },
-  },
-};
+      return this.filas
+    }
+  }
+}
 </script>
 
 <style lang="scss">
