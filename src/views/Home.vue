@@ -49,20 +49,32 @@
         class="input-login pl-2"
         placeholder="BUSCAR ESTUDIANTE ..."
       />
-      <button class="btn border ml-5" v-b-modal.modal-agregar>AGREGAR</button>
-      <button class="btn border" v-b-modal.modal-editar>EDITAR</button>
       <button
-        class="btn border d-flex align-items-center"
+        v-b-modal.modal-agregar
+        class="btn border d-flex align-items-center ml-4"
+      >
+        <b-icon-person-plus></b-icon-person-plus>
+        <p class="m-0 p-0 ml-2">AGREGAR</p>
+      </button>
+      <button
+        v-b-modal.modal-editar
+        class="btn border d-flex align-items-center ml-1"
+      >
+        <b-icon-pencil-square></b-icon-pencil-square>
+        <p class="m-0 p-0 ml-2">EDITAR</p>
+      </button>
+      <button
+        class="btn border d-flex align-items-center ml-1"
         v-on:click="notificarUsuarios()"
       >
         <b-icon-envelope></b-icon-envelope>
         <p class="m-0 p-0 ml-2">NOTIFICAR</p>
       </button>
       <button
-        class="btn border d-flex align-items-center"
+        class="btn border d-flex align-items-center ml-1"
         v-on:click="consultarUsuario()"
       >
-        <b-icon-envelope></b-icon-envelope>
+        <b-icon-search></b-icon-search>
         <p class="m-0 p-0 ml-2">CONSULTAR</p>
       </button>
     </div>

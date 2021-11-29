@@ -93,83 +93,83 @@
 </template>
 
 <script>
-import agregarEstudiante from "../components/modales/AgregarEstudiante.vue";
-import editarEstudiante from "../components/modales/EditarEstudiante.vue";
+import agregarEstudiante from '../components/modales/AgregarEstudiante.vue'
+import editarEstudiante from '../components/modales/EditarEstudiante.vue'
 
 export default {
-  name: "Consulta",
-  data() {
+  name: 'Consulta',
+  data () {
     return {
       perPage: 3,
       currentPage: 1,
-      documento: "",
-      search: "",
+      documento: '',
+      search: '',
       titulos: [
-        { key: "id", label: "ID" },
-        { key: "nombre", label: "NOMBRE" },
-        { key: "documento", label: "CÉDULA" },
-        { key: "nombre_curso", label: "CURSO" },
-        { key: "fecha_realizacion", label: "F. REALIZACIÓN" },
-        { key: "fecha_vencimiento", label: "F. VENCIMIENTO" },
-        { key: "estado", label: "ESTADO" },
+        { key: 'id', label: 'ID' },
+        { key: 'nombre', label: 'NOMBRE' },
+        { key: 'documento', label: 'CÉDULA' },
+        { key: 'nombre_curso', label: 'CURSO' },
+        { key: 'fecha_realizacion', label: 'F. REALIZACIÓN' },
+        { key: 'fecha_vencimiento', label: 'F. VENCIMIENTO' },
+        { key: 'estado', label: 'ESTADO' }
       ],
-      filas: [],
-    };
+      filas: []
+    }
   },
 
   components: {
     agregarEstudiante,
-    editarEstudiante,
+    editarEstudiante
   },
 
   methods: {
     cerrarSesion: function () {
       this.$router.push({
-        name: "Login",
-      });
+        name: 'Home'
+      })
     },
 
     regresarInicio: function () {
       this.$router.push({
-        name: "Home",
-      });
+        name: 'Home'
+      })
     },
 
     consultarEstudiante: function () {
       this.$store
-        .dispatch("fetchConsultarEstudiante", {
-          documento: this.documento,
+        .dispatch('fetchConsultarEstudiante', {
+          documento: this.documento
         })
         .then((result) => {
-          this.filas = result.DATOS;
-        });
+          this.filas = result.DATOS
+        })
     },
 
-    formatoMiles(n) {
+    formatoMiles (n) {
       // Example -> format number 1000000 to 1,234,567
-      return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    },
+      return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    }
   },
 
-  created() {},
+  created () {},
 
   computed: {
-    rows() {
-      return this.filas.length;
+    rows () {
+      return this.filas.length
     },
 
     filasFiltradas: function () {
-      if (this.search !== "") {
+      if (this.search !== '') {
         return this.filas.filter((element) => {
           return element.nombre
             .toLowerCase()
-            .includes(this.search.toLowerCase());
-        });
+            .includes(this.search.toLowerCase())
+        })
       }
-      return this.filas;
-    },
-  },
-};
+      return this.filas
+    }
+  }
+}
 </script>
 
 <style lang="scss">
