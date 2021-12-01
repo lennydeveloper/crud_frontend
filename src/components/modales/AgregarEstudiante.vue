@@ -73,38 +73,39 @@
 </template>
 
 <script>
+import Bus from '@/helper/bus.js'
 export default {
-  name: "agregarEstudiante",
+  name: 'agregarEstudiante',
   components: {},
-  data() {
+  data () {
     return {
-      nombre_est: "",
-      telefono_est: "",
-      correo_est: "",
-      documento_est: "",
-      codigo: "",
+      nombre_est: '',
+      telefono_est: '',
+      correo_est: '',
+      documento_est: '',
+      codigo: '',
       tipo_documento: null,
       opciones_tipo_documento: [],
       curso_id: null,
       listado_cursos: [],
-      fecha_realizacion: "",
-    };
+      fecha_realizacion: ''
+    }
   },
 
-  mounted() {},
+  mounted () {},
 
-  created() {
-    this.$store.dispatch("fetchObtenerTiposDocumento").then((result) => {
-      this.opciones_tipo_documento = result.DATOS;
+  created () {
+    this.$store.dispatch('fetchObtenerTiposDocumento').then((result) => {
+      this.opciones_tipo_documento = result.DATOS
       this.opciones_tipo_documento.unshift({
         value: null,
-        text: "Tipo de documento",
-      });
+        text: 'Tipo de documento'
+      })
     }),
-      this.$store.dispatch("fetchObtenerCursos").then((result) => {
-        this.listado_cursos = result.DATOS;
-        this.listado_cursos.unshift({ value: null, text: "Curso realizado" });
-      });
+    this.$store.dispatch('fetchObtenerCursos').then((result) => {
+      this.listado_cursos = result.DATOS
+      this.listado_cursos.unshift({ value: null, text: 'Curso realizado' })
+    })
   },
 
   methods: {
@@ -117,35 +118,35 @@ export default {
         correo: this.correo_est,
         cod_cert: this.codigo,
         curso_id: this.curso_id,
-        fecha_realizacion: this.fecha_realizacion,
-      };
-      this.$store.dispatch("fetchAgregarEstudiante", payload).then((result) => {
-        if (result.CODIGO == 1) {
-          alert("Estudiante agregado exitosamente");
-          this.$router.go(0);
+        fecha_realizacion: this.fecha_realizacion
+      }
+      this.$store.dispatch('fetchAgregarEstudiante', payload).then((result) => {
+        if (result.CODIGO === 1) {
+          alert('Estudiante agregado exitosamente')
+          Bus.$emit('actualizarDatos')
         } else {
-          alert(result.MENSAJE);
+          alert(result.MENSAJE)
         }
-      });
+      })
       this.resetModal()
-      this.cerrarModal("modal-agregar");
+      this.cerrarModal('modal-agregar')
     },
 
     cerrarModal: function (id) {
-      this.$root.$emit("bv::hide::modal", id);
+      this.$root.$emit('bv::hide::modal', id)
     },
 
     resetModal: function () {
-      this.nombre_est = "";
-      this.telefono_est = "";
-      this.correo_est = "";
-      this.documento_est = "";
-      this.codigo = "";
-      this.tipo_documento = null;
-      this.curso_id = null;
-    },
-  },
-};
+      this.nombre_est = ''
+      this.telefono_est = ''
+      this.correo_est = ''
+      this.documento_est = ''
+      this.codigo = ''
+      this.tipo_documento = null
+      this.curso_id = null
+    }
+  }
+}
 </script>
 
 <style lang="scss">

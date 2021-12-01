@@ -81,7 +81,6 @@
 
     <b-table
       responsive
-      sticky-header
       striped
       bordered
       show-empty
@@ -151,7 +150,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      perPage: 10,
+      perPage: 5,
       currentPage: 1,
       search: '',
       titulos: [
@@ -177,21 +176,38 @@ export default {
     borrarEstudiante
   },
 
+  mounted () {
+    Bus.$on('actualizarDatos', () => {
+      this.obtenerEstudiantes()
+    })
+  },
+
   methods: {
+    obtenerEstudiantes: function () {
+      this.$store.dispatch('fetchObtenerEstudiantes').then((result) => {
+        if (result.CODIGO === 1) {
+          this.filas = result.DATOS
+        }
+      })
+    },
     cerrarSesion: function () {
       this.$router.push({
-        name: 'Home'
+        name: 'Login'
       })
     },
 
     notificarUsuarios: function () {
-      this.$store.dispatch('fetchNotificarUsuarios', { can_dias: process.env.VUE_APP_TIEMPO_NOTIFICACION }).then((result) => {
-        if (result.CODIGO === 1) {
-          alert('Los usuarios han sido notificados exitosamente')
-        } else {
-          alert('Error al notificar a los usuarios')
-        }
-      })
+      this.$store
+        .dispatch('fetchNotificarUsuarios', {
+          can_dias: process.env.VUE_APP_TIEMPO_NOTIFICACION
+        })
+        .then((result) => {
+          if (result.CODIGO === 1) {
+            alert('Los usuarios han sido notificados exitosamente')
+          } else {
+            alert('Error al notificar a los usuarios')
+          }
+        })
     },
 
     consultarUsuario: function () {
@@ -253,11 +269,7 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('fetchObtenerEstudiantes').then((result) => {
-      if (result.CODIGO == 1) {
-        this.filas = result.DATOS
-      }
-    })
+    this.obtenerEstudiantes()
   },
 
   computed: {

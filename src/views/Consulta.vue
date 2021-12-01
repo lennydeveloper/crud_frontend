@@ -125,7 +125,7 @@ export default {
   methods: {
     cerrarSesion: function () {
       this.$router.push({
-        name: 'Home'
+        name: 'Login'
       })
     },
 

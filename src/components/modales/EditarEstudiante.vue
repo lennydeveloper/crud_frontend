@@ -70,52 +70,52 @@
 </template>
 
 <script>
-import Bus from "@/helper/bus.js";
+import Bus from '@/helper/bus.js'
 export default {
-  name: "editarEstudiante",
+  name: 'editarEstudiante',
   components: {},
-  data() {
+  data () {
     return {
       estudiante: {
         id: null,
-        nombre_estudiante: "",
-        documento_estudiante: "",
-        telefono_estudiante: "",
-        correo_estudiante: "",
-        codigo: "",
+        nombre_estudiante: '',
+        documento_estudiante: '',
+        telefono_estudiante: '',
+        correo_estudiante: '',
+        codigo: '',
         curso_id: null,
-        fecha_realizacion: "",
-        estado: null,
+        fecha_realizacion: '',
+        estado: null
       },
-      listado_cursos: [],
-    };
+      listado_cursos: []
+    }
   },
 
-  mounted() {
-    Bus.$on("editar_estudiante", (id) => {
+  mounted () {
+    Bus.$on('editar_estudiante', (id) => {
       this.$store
-        .dispatch("fetchObtenerDetalleEstudiante", { estudiante_id: id })
+        .dispatch('fetchObtenerDetalleEstudiante', { estudiante_id: id })
         .then((result) => {
-          this.estudiante = result.DATOS;
-          this.$root.$emit("bv::show::modal", "modal-editar");
-        });
-    });
+          this.estudiante = result.DATOS
+          this.$root.$emit('bv::show::modal', 'modal-editar')
+        })
+    })
   },
 
   computed: {},
 
-  created() {
-    this.$store.dispatch("fetchObtenerTiposDocumento").then((result) => {
-      this.opciones_tipo_documento = result.DATOS;
+  created () {
+    this.$store.dispatch('fetchObtenerTiposDocumento').then((result) => {
+      this.opciones_tipo_documento = result.DATOS
       this.opciones_tipo_documento.unshift({
         value: null,
-        text: "Tipo de documento",
-      });
+        text: 'Tipo de documento'
+      })
     }),
-      this.$store.dispatch("fetchObtenerCursos").then((result) => {
-        this.listado_cursos = result.DATOS;
-        this.listado_cursos.unshift({ value: null, text: "Curso realizado" });
-      });
+    this.$store.dispatch('fetchObtenerCursos').then((result) => {
+      this.listado_cursos = result.DATOS
+      this.listado_cursos.unshift({ value: null, text: 'Curso realizado' })
+    })
   },
 
   methods: {
@@ -129,39 +129,39 @@ export default {
         correo: this.estudiante.correo_estudiante,
         cod_cert: this.estudiante.codigo,
         curso_id: this.estudiante.curso_id,
-        fecha_realizacion: this.estudiante.fecha_realizacion,
-      };
-      this.$store.dispatch("fetchEditarEstudiante", payload).then((result) => {
-        if (result.CODIGO == 1) {
-          alert("Estudiante editado exitosamente");
-          this.$router.go(0);
+        fecha_realizacion: this.estudiante.fecha_realizacion
+      }
+      this.$store.dispatch('fetchEditarEstudiante', payload).then((result) => {
+        if (result.CODIGO === 1) {
+          alert('Estudiante editado exitosamente')
+          Bus.$emit('actualizarDatos')
         } else {
-          alert(result.MENSAJE);
+          alert(result.MENSAJE)
         }
-      });
+      })
       this.resetModal()
-      this.cerrarModal("modal-editar");
+      this.cerrarModal('modal-editar')
     },
 
     cerrarModal: function (id) {
-      this.$root.$emit("bv::hide::modal", id);
+      this.$root.$emit('bv::hide::modal', id)
     },
 
     resetModal: function () {
       this.estudiante = {
         id: null,
-        nombre_estudiante: "",
-        documento_estudiante: "",
-        telefono_estudiante: "",
-        correo_estudiante: "",
-        codigo: "",
+        nombre_estudiante: '',
+        documento_estudiante: '',
+        telefono_estudiante: '',
+        correo_estudiante: '',
+        codigo: '',
         curso_id: null,
-        fecha_realizacion: "",
-        estado: null,
-      };
-    },
-  },
-};
+        fecha_realizacion: '',
+        estado: null
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss">

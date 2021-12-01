@@ -13,45 +13,45 @@
 </template>
 
 <script>
-import Bus from "@/helper/bus.js";
+import Bus from '@/helper/bus.js'
 export default {
-  name: "borrarEstudiante",
+  name: 'borrarEstudiante',
   components: {},
-  data() {
+  data () {
     return {
-      id: null,
-    };
+      id: null
+    }
   },
 
-  mounted() {
-    Bus.$on("eliminarEstudiante", (id) => {
-      this.id = id;
-      this.$root.$emit("bv::show::modal", "modal-borrar");
-    });
+  mounted () {
+    Bus.$on('eliminarEstudiante', (id) => {
+      this.id = id
+      this.$root.$emit('bv::show::modal', 'modal-borrar')
+    })
   },
 
   methods: {
     borrarEstudiante: function () {
-      this.cerrarModal("modal-borrar");
+      this.cerrarModal('modal-borrar')
       this.$store
-        .dispatch("fetchEliminarEstudiante", { id: this.id })
+        .dispatch('fetchEliminarEstudiante', { id: this.id })
         .then((result) => {
           if (result.status === 200) {
-            alert("Estudiante eliminado exitosamente");
-            this.$router.go(0);
+            alert('Estudiante eliminado exitosamente')
+            Bus.$emit('actualizarDatos')
           }
-          this.id = null;
+          this.id = null
         })
         .catch((result) => {
-          alert(result.data.MENSAJE);
-        });
+          alert(result.data.MENSAJE)
+        })
     },
 
     cerrarModal: function (id) {
-      this.$root.$emit("bv::hide::modal", id);
-    },
-  },
-};
+      this.$root.$emit('bv::hide::modal', id)
+    }
+  }
+}
 </script>
 
 <style lang="scss">
