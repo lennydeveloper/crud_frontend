@@ -191,6 +191,7 @@ export default {
       })
     },
     cerrarSesion: function () {
+      this.$store.commit('setAuth', false)
       this.$router.push({
         name: 'Login'
       })

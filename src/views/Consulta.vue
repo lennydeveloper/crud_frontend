@@ -8,14 +8,6 @@
         <b-icon-house></b-icon-house>
         <p class="m-0 p-0 ml-1">Inicio</p>
       </button>
-
-      <button
-        class="btn d-flex align-items-center border"
-        v-on:click="cerrarSesion()"
-      >
-        <b-icon-box-arrow-right></b-icon-box-arrow-right>
-        <p class="m-0 p-0 ml-1">Salir</p>
-      </button>
     </div>
 
     <h3>Consultar Estudiante</h3>

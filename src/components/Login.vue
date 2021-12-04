@@ -48,6 +48,7 @@ export default {
       }
       this.$store.dispatch('fetchIniciarSesion', payload).then((result) => {
         if (result.CODIGO === 1) {
+          this.$store.commit('setAuth', true)
           this.$router.push({
             name: 'Home'
           })
