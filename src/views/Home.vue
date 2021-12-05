@@ -1,5 +1,6 @@
 <template>
   <div class="px-5 mt-3">
+  <img src="https://mariohoyosconsultoressas.com/wp-content/uploads/2020/04/logo-light.png" alt="MHC" style="width:128px;height:128px;">
     <div class="d-flex align-items-center justify-content-end">
       <button
         class="btn d-flex align-items-center border"
