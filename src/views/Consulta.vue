@@ -37,14 +37,14 @@
       double-click to edit
     </p>-->
 
-    <div class="d-flex mt-3 justify-content-start align-items-center">
+    <!--<div class="d-flex mt-3 justify-content-start align-items-center">
       <input
         type="text"
         v-model="search"
         class="input-login pl-2"
         placeholder="FILTRO POR NOMBRE ..."
       />
-    </div>
+    </div>-->
 
     <b-table
       responsive
