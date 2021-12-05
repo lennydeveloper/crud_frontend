@@ -39,7 +39,7 @@
     </div>
 
     <p class="text-left bg-dark text-white px-4 py-2 mt-3 border rounded">
-      double-click to edit
+      Doble click para editar cualquier registro
     </p>
 
     <div class="d-flex mt-3 justify-content-start align-items-center">
@@ -92,7 +92,7 @@
       @row-dblclicked="doubleClick($event)"
     >
       <template #empty="scope">
-        There are no records matching your request
+        No hay registros que coincidan con su solicitud
       </template>
 
       <template #cell(documento_estudiante)="data">
