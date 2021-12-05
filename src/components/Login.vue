@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-3 py-3 px-4 border" style="width: 500px">
     <img src="https://mariohoyosconsultoressas.com/wp-content/uploads/2020/04/logo-light.png" alt="MHC" style="width:128px;height:128px;">
-    
+
     <div class="d-flex align-items-center mx-auto my-auto mt-3">
       <p class="w-25 m-0 p-0">Usuario</p>
       <input class="pl-2 ml-2 w-75 input-login" type="text" v-model="usuario" />
@@ -63,7 +63,7 @@ export default {
 
 <style lang="scss">
 $colorNegro: #3e3f53;
-$colorAzul: #1f5ca9;
+$colorAzul: #001e54;
 $colorAzulClaro: #4e92fc;
 $colorGris: #a8c3de;
 $colorGrisClaro: #f1f9ff;
