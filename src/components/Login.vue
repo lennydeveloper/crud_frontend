@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-3 py-3 px-4 border" style="width: 500px">
-    <img src="https://mariohoyosconsultoressas.com/wp-content/uploads/2021/11/Mario-Hoyos-Consultores.png" style="width:128px;height:128px;>
+    <img src="https://mariohoyosconsultoressas.com/wp-content/uploads/2021/11/Mario-Hoyos-Consultores.png" alt="MHC" style="width:128px;height:128px;">
     <h3>Logo</h3>
 
     <div class="d-flex align-items-center mx-auto my-auto mt-3">
