@@ -1,13 +1,13 @@
 <template>
   <div class="px-5 mt-3">
     <div class="d-flex align-items-center justify-content-between">
-      <button
+<!-- <button
         class="btn d-flex align-items-center border"
         v-on:click="regresarInicio()"
       >
         <b-icon-house></b-icon-house>
         <p class="m-0 p-0 ml-1">Inicio</p>
-      </button>
+      </button>-->
     </div>
 
     <h3>Consultar Estudiante</h3>
