@@ -59,7 +59,7 @@
       :filter="search"
     >
       <template #empty="scope">
-        There are no records matching your request
+        No hay registros que coincidan con su solicitud
       </template>
 
       <template #cell(nombre)="data">
