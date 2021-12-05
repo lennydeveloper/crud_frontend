@@ -160,8 +160,8 @@ export default {
         { key: 'telefono_estudiante', label: 'TELÉFONO' },
         { key: 'correo_estudiante', label: 'CORREO' },
         { key: 'nombre_curso', label: 'CURSO' },
-        { key: 'fecha_realizacion', label: 'F. REALIZACIÓN' },
-        { key: 'fecha_vencimiento', label: 'F. VENCIMIENTO' },
+        { key: 'fecha_realizacion', label: 'REALIZACIÓN' },
+        { key: 'fecha_vencimiento', label: 'VENCIMIENTO' },
         { key: 'estado', label: 'ESTADO' },
         { key: 'opciones', label: 'OPCIONES' }
       ],
