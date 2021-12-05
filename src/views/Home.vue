@@ -70,13 +70,13 @@
         <b-icon-envelope></b-icon-envelope>
         <p class="m-0 p-0 ml-2">NOTIFICAR</p>
       </button>
-      <button
+      <!--<button
         class="btn border d-flex align-items-center ml-1"
         v-on:click="consultarUsuario()"
       >
         <b-icon-search></b-icon-search>
         <p class="m-0 p-0 ml-2">CONSULTAR</p>
-      </button>
+      </button>-->
     </div>
 
     <b-table
