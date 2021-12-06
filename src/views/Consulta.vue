@@ -10,7 +10,7 @@
       </button>-->
     </div>
 
-    <h3>Consultar Estudiante</h3>
+    <!--<h3>Consultar Estudiante</h3>-->
 
     <div
       class="container d-flex justify-content-center align-items-center mt-3"
