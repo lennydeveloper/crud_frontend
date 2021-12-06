@@ -97,7 +97,7 @@ export default {
       documento: '',
       search: '',
       titulos: [
-        { key: 'id', label: 'ID' },
+        //{ key: 'id', label: 'ID' },//
         { key: 'nombre', label: 'NOMBRE' },
         { key: 'documento', label: 'CÉDULA' },
         { key: 'cod_cert', label: 'CERTIFICADO' },
