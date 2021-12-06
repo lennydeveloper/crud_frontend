@@ -102,8 +102,8 @@ export default {
         { key: 'documento', label: 'CÉDULA' },
         { key: 'cod_cert', label: 'CERTIFICADO' },
         { key: 'nombre_curso', label: 'CURSO' },
-        { key: 'fecha_realizacion', label: 'F. REALIZACIÓN' },
-        { key: 'fecha_vencimiento', label: 'F. VENCIMIENTO' },
+        { key: 'fecha_realizacion', label: 'REALIZACIÓN' },
+        { key: 'fecha_vencimiento', label: 'VENCIMIENTO' },
         { key: 'estado', label: 'ESTADO' }
       ],
       filas: []
