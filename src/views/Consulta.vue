@@ -59,7 +59,7 @@
       :filter="search"
     >
       <template #empty="scope">
-        No hay registros que coincidan con su solicitud
+        Ingrese número de documento del estudiante
       </template>
 
       <template #cell(nombre)="data">
